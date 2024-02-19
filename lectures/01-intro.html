@@ -28,6 +28,70 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="reveal-js/dist/theme/white.css" id="theme">
   <link rel="stylesheet" href="theme/theme.css"/>
@@ -43,7 +107,7 @@
 <section id="функционално-програмиране-за-напреднали-със-scala"
 class="slide level1">
 <h1>Функционално програмиране за напреднали със Scala</h1>
-<p>2024</p>
+<p>2023/2024</p>
 <p><img data-src="images/scala-logo.png" /></p>
 </section>
 <section id="днес" class="slide level1">
@@ -60,9 +124,7 @@ height="180" /></p>
 човек?</li>
 <li class="fragment">Kакво ще учим?</li>
 <li class="fragment">Ресурси</li>
-<li class="fragment">Инсталиране и инструменти</li>
-<li class="fragment">Начало на първа тема: Въведение във ФП със
-Scala</li>
+<li class="fragment">Малко примерен код</li>
 </ul>
 </div>
 </section>
@@ -76,16 +138,22 @@ style="vertical-align: middle; border-radius: 50%" height="100" />
 Здравко Стойчев</a>
 </li>
 <li>
+<a href="https://www.linkedin.com/in/boyan-bonev-ams/"><img
+data-src="images/01-intro/boyan.jpg"
+style="vertical-align: middle; border-radius: 50%" height="100" /> Боян
+Бонев</a>
+</li>
+<li>
 <a href="https://www.linkedin.com/in/vdichev/"><img
 data-src="images/01-intro/vassil.jpg"
 style="vertical-align: middle; border-radius: 50%" height="100" /> Васил
 Дичев</a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/boyan-bonev-ams/"><img
-data-src="images/01-intro/boyan.jpg"
-style="vertical-align: middle; border-radius: 50%" height="100" /> Боян
-Бонев</a>
+<a href="https://www.linkedin.com/in/viktor-marinov-07374512b/"><img
+data-src="images/01-intro/viktor.jpg"
+style="vertical-align: middle; border-radius: 50%" height="100" />
+Виктор Маринов</a>
 </li>
 </ul>
 <p>…може би и други!</p>
@@ -94,7 +162,18 @@ style="vertical-align: middle; border-radius: 50%" height="100" /> Боян
 <h1>Сбирки и админастративни неща</h1>
 <div>
 <ul>
-<li class="fragment">Всeки понеделник/сряда от 18:15 до 20:00</li>
+<li class="fragment">Понеделник и сряда от 18:15 до 20:00
+<ul>
+<li class="fragment">в зали 02 и 01 съответно</li>
+<li class="fragment">От тази година 4 часа лекции</li>
+<li class="fragment">1 час семинари?</li>
+</ul></li>
+<li class="fragment">Изцяло на място
+<ul>
+<li class="fragment">Но ще опитаме да правим записи</li>
+<li class="fragment">За да се получи курсът е нужно и вашето
+участие</li>
+</ul></li>
 <li class="fragment">Slack – най-лесно може да ни намерите там &lt;-
 новини и комуникация.</li>
 <li class="fragment">Материали в GitHub: <a
@@ -107,63 +186,47 @@ href="https://github.com/scala-fmi/scala-fmi-2024">https://github.com/scala-fmi/
 <h1>Оценяване?</h1>
 <div class="fragment">
 <ul>
-<li>Домашни през семестъра: 50 точки</li>
-<li>Два теста: 50 точки</li>
+<li>Домашни през семестъра (около 5): 50 точки</li>
 <li>Финален проект: 50 точки</li>
 <li>Бонус точки</li>
-<li>Общо: 150+</li>
+<li>Общо: 100+</li>
+<li>Ще следим за стил (важен за цялостната оценка)</li>
 </ul>
 </div>
 <div class="fragment">
 <p><strong>Скала</strong> за оценяване (pun intended):</p>
-<table style="width:47%;">
+<table style="width:28%;">
 <colgroup>
 <col style="width: 12%" />
 <col style="width: 15%" />
-<col style="width: 19%" />
 </colgroup>
 <tbody>
 <tr class="odd">
 <td>Оценка</td>
 <td>Точки</td>
-<td>Дял</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>≥ 120</td>
-<td>80%</td>
+<td>≥ 82</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>103–119</td>
-<td>69%</td>
+<td>70–81</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>86–102</td>
-<td>57%</td>
+<td>58–69</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>68–85</td>
-<td>45%</td>
+<td>46–57</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>&lt; 68</td>
-<td>&lt; 45%</td>
+<td>&lt; 46</td>
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<section id="представете-ни-се-за-бонус-точки" class="slide level1">
-<h1>Представете ни се за бонус точки</h1>
-<div class="fragment">
-<p>Споделете няколко думи за себе си и своите интереси и качете снимка с
-инсталирана и работеща Scala в <a
-href="https://scalafmi.slack.com/archives/C01P1KBSF54"><strong>#да-се-представим</strong></a>
-в Slack за <strong>2 бонус точки</strong>.</p>
 </div>
 </section>
 <section id="функционално-кратка-история" class="slide level1">
@@ -271,14 +334,54 @@ height="480" /></p>
 с друго</p>
 </div>
 </section>
+<section id="симбиоза-на-фп-и-ооп" class="slide level1">
+<h1>Симбиоза на ФП и ООП</h1>
+<p>“Scala was created to demonstrate combinations of FP and OOP are
+practical”</p>
+<p>“Functions for the logic, objects as modules”</p>
+</section>
 <section id="детайлна-типова-система" class="slide level1">
 <h1>Детайлна типова система</h1>
-<p><img data-src="./images/01-intro/static-type-system.jpeg"
+<p><img data-src="./images/01-intro/detailed-type-system-1.png"
 height="560" /></p>
 </section>
-<section id="section" class="slide level1">
-<h1></h1>
-<p>Симбиоза на ФП и ООП</p>
+<section id="детайлна-типова-система-1" class="slide level1">
+<h1>Детайлна типова система</h1>
+<p><img data-src="./images/01-intro/detailed-type-system-2.png"
+height="560" /></p>
+</section>
+<section id="детайлна-типова-система-2" class="slide level1">
+<h1>Детайлна типова система</h1>
+<p><img data-src="./images/01-intro/detailed-type-system-3.png"
+height="560" /></p>
+</section>
+<section id="защо-scala-днес-част-1" class="slide level1">
+<h1>Защо Scala днес? (част 1)</h1>
+<ul>
+<li>Създадено за ФП</li>
+<li>ФП екосистема</li>
+<li>С възможност да излезеш от ограниченията когато е нужно</li>
+<li>ФП в Java все още се усеща скалъпено
+<ul>
+<li>И дори с fibers Java е все още години назад в concurrency</li>
+</ul></li>
+</ul>
+</section>
+<section id="защо-scala-днес-част-2" class="slide level1">
+<h1>Защо Scala днес? (част 2)</h1>
+<ul>
+<li>Интиутивен, приятен и силно изразителен</li>
+<li>Учи ни на много добри практики
+<ul>
+<li>лесни за използване по дефоулт</li>
+</ul></li>
+<li>Уникален набор от функционалности
+<ul>
+<li>непрекъснато подобряващ се</li>
+</ul></li>
+<li>Веднъж свикнал със Scala и този начин на мислене няма връщане назад
+:D</li>
+</ul>
 </section>
 <section id="scala-3" class="slide level1">
 <h1>Scala 3</h1>
@@ -299,7 +402,8 @@ href="https://docs.scala-lang.org/scala3/new-in-scala3.html">списък на
 <ul>
 <li class="fragment"><p>Курсът ни ще се базира на Scala 3</p>
 <p><img data-src="images/01-intro/cheering-minions.gif" /></p></li>
-<li class="fragment"><p>Ще отбелязваме кои са новите feature-и</p></li>
+<li class="fragment"><p>Този път очакваме IntelliJ да работи добре
+:D</p></li>
 <li class="fragment"><p>Ще ви срещнем и с мъничко Scala 2 синтаксис</p>
 <ul>
 <li class="fragment">много код все още използва него (Бележка Боян: Но
@@ -315,48 +419,120 @@ href="https://docs.scala-lang.org/scala3/new-in-scala3.html">списък на
 <li class="fragment">Скала през годините….</li>
 <li class="fragment">Трансформация от специфични проблемни ниши към
 General Purpose Language</li>
-<li class="fragment">Obligatory pointless name drop: Netflix, Stripe,
-Airtable, Ocado!</li>
+<li class="fragment">Obligatory pointless name drop: Twitter, Netflix,
+Disney+, Stripe, Airtable, Databricks, Ocado!</li>
 </ul>
 </div>
 </section>
+<section id="scala-екосистеми-и-проекти" class="slide level1">
+<h1>Scala екосистеми и проекти</h1>
+<ul>
+<li><a href="https://www.lightbend.com/">Lightbend</a> – Akka, Play
+Framework, Kalix, Slick</li>
+<li><a href="https://typelevel.org/">Typelevel</a> – Cats, Cats Effect,
+Http4s, fs2, doobie и много други</li>
+<li><a href="https://zio.dev/">ZIO</a></li>
+<li>Apache
+<ul>
+<li><a href="https://spark.apache.org/">Spark</a> – large-scale data
+processing (incl. ML)</li>
+<li><a href="https://flink.apache.org/">Flink</a> – distributed event
+stream processing</li>
+<li><a href="https://kafka.apache.org/">Kafka</a> – distributed event
+streaming</li>
+</ul></li>
+</ul>
+</section>
+<section id="иновативно-и-достъпно-комюнити-и-фп-и-scala"
+class="slide level1">
+<h1>Иновативно и достъпно комюнити<br />(и ФП и Scala)</h1>
+<p><img data-src="images/01-intro/conferences.png" height="480" /></p>
+</section>
 <section id="какво-ще-учим-част-1" class="slide level1">
 <h1>Какво ще учим 😊?<br />(част 1)</h1>
+<div>
 <ul>
-<li>Въведение във функционалното програмиране</li>
-<li>Основни подходи при функционално програмиране
+<li class="fragment">Ще преразгледаме основите на ФП (и ООП)</li>
+<li class="fragment">Immutability, immutability, immutability
 <ul>
-<li>рекурсия</li>
-<li>неизменими (immutable) структури от данни</li>
-<li>функциите като първокласни обекти</li>
-<li>композиция на функции</li>
-<li>изразяване чрез типове</li>
+<li class="fragment">програми = стойности + трансформации върху тях</li>
+<li class="fragment">типовете ни водят напред
+<ul>
+<li class="fragment">щом се компилира обикновено работи :D</li>
 </ul></li>
-<li>ООП</li>
-<li>Трансформиране на данни</li>
-<li>Lazy изчисления</li>
-<li>Дизайн на типове чрез ФП</li>
+</ul></li>
+<li class="fragment">ADTs и как да си дизайнем домейна изчерпателно
+<ul>
+<li class="fragment">“make illegal state unrepresentable”</li>
+</ul></li>
+<li class="fragment">Как да кодим и unhappy пътя
+<ul>
+<li class="fragment">без да хвърляме изключения</li>
+<li class="fragment">изразявайки го чрез стойности, които можем да
+трансформираме</li>
+</ul></li>
 </ul>
+</div>
 </section>
 <section id="какво-ще-учим-част-2" class="slide level1">
 <h1>Какво ще учим 😊?<br />(част 2)</h1>
+<div>
 <ul>
-<li>Овладяване на страничните ефекти</li>
-<li>Функционална обработка на грешки</li>
-<li>Конкурентност, асинхронност, комуникация по мрежа (HTTP)</li>
-<li>Абстракции от по-висок ред – видове type classes</li>
-<li>Библиотечка за абстракции – Cats 😺</li>
-<li>Библиотечка за асинхронност и конкурентност – Cats Effect</li>
-<li>Изграждане на цялостнно Scala приложение
+<li class="fragment">Concurrency
 <ul>
-<li>структура</li>
-<li>управление на ресурсите</li>
-<li>домейн дизайн</li>
-<li>връзка с релационна база</li>
-<li>конкурентност и асинхронност</li>
-<li>HTTP</li>
+<li class="fragment">без мютекси, mutable състояние, deadlocks, …</li>
+<li class="fragment">разбирайки го</li>
+<li class="fragment">чрез асинхронни ефектни системи
+<ul>
+<li class="fragment">гарантиращи безпосност
+<ul>
+<li class="fragment">отново, щом се компилира – работи :P</li>
+</ul></li>
+<li class="fragment">решаващи проблемите на Promise/Future</li>
+<li class="fragment">composite, performant, auto-cancellation</li>
+</ul></li>
+</ul></li>
+<li class="fragment">Прилагане на абстрактната мощ на математиката в
+програмирането
+<ul>
+<li class="fragment">type class-ове</li>
+<li class="fragment">думички като монади, апликативи и др.</li>
+<li class="fragment">котки (Typelevel екосистемата) 😺</li>
 </ul></li>
 </ul>
+</div>
+</section>
+<section id="какво-ще-учим-част-3" class="slide level1">
+<h1>Какво ще учим 😊?<br />(част 3)</h1>
+<div>
+<ul>
+<li class="fragment">Композитността ще е повтаряема тема</li>
+<li class="fragment">От как да пишем малки функции до как да изградим
+цялостно Scala приложение
+<ul>
+<li class="fragment">програмите като стойности</li>
+<li class="fragment">домейн дизайн</li>
+<li class="fragment">dependency injection, верифициран по време на
+компилация</li>
+<li class="fragment">гарантирано безопасно управление на ресурси</li>
+</ul></li>
+<li class="fragment">Уеб приложения
+<ul>
+<li class="fragment">които си комуникират</li>
+<li class="fragment">HTTP, връзка с релационни бази, JSON сериализация,
+поточна обработка</li>
+<li class="fragment">описване на endpoint-и като данни <img
+data-src="images/01-intro/tapir.png"
+style="vertical-align:middle; margin: 0" height="40" /></li>
+</ul></li>
+<li class="fragment">Курсът е с фокус върху концепциите и тяхното
+разбиране
+<ul>
+<li class="fragment">за да можем да ги приложим и извън Scala</li>
+<li class="fragment">често ще правим сравнения с други езици</li>
+</ul></li>
+</ul>
+</div>
 </section>
 <section id="какво-ще-учим-разпределение-по-теми" class="slide level1">
 <h1>Какво ще учим 😊?<br />Разпределение по теми</h1>
@@ -371,26 +547,83 @@ Airtable, Ocado!</li>
 <li>Type classes</li>
 <li>Монади и апликативи</li>
 <li>Cats и Cats Effect</li>
-<li>Изграждане на Scala приложение</li>
+<li>Изграждане на цялостно Scala web приложение</li>
 </ol>
+<p>(навярно ще направим промени)</p>
+</section>
+<section id="за-какво-няма-да-говорим-достатъчно" class="slide level1">
+<h1>За какво няма да говорим достатъчно</h1>
+<ul>
+<li>Scala.js, нито Scala Native
+<ul>
+<li><a href="https://www.youtube.com/watch?v=j6eFW4VmbRU">Fullstack
+Scala 3 with Typelevel Stack</a></li>
+</ul></li>
+<li>Тестване
+<ul>
+<li>ще разгледаме основите и ще ви насочваме през домашните</li>
+<li>но няма да успеем на наблегнем на тях и ще разчитаме и на вас</li>
+<li>Property-based testing</li>
+</ul></li>
+<li>Spark (но може да разгледаме примери)</li>
+<li>Direct style concurrency
+<ul>
+<li>тепърва се развива (safety concerns)</li>
+<li>но вече съществуват Scala библиотеки, базирани на Java fibers (<a
+href="https://github.com/softwaremill/ox">Ox</a>)</li>
+<li>курсът ще се фокусира върху ефектни системи</li>
+</ul></li>
+</ul>
 </section>
 <section id="ресурси" class="slide level1">
 <h1>Ресурси</h1>
+<p><img data-src="images/01-intro/programming-in-scala.png"
+height="240" /> <img
+data-src="images/01-intro/fp-in-scala-2nd-edition.png" height="240" />
+<img data-src="images/01-intro/practical-fp-in-scala.png"
+height="240" /></p>
+<p><img data-src="images/01-intro/essential-effects.jpg" height="240" />
+<img data-src="images/01-intro/scala-with-cats.png" height="240" /></p>
+</section>
+<section id="ресурси-1" class="slide level1">
+<h1>Ресурси</h1>
 <ul>
-<li>Functional Progamming in Scala (<a
-href="https://www.manning.com/books/functional-programming-in-scala">1st
-edition</a>, <a
-href="https://www.manning.com/books/functional-programming-in-scala-second-edition">2nd
-edition</a>)</li>
 <li><a
-href="https://www.artima.com/shop/programming_in_scala_5ed">Programming
-in Scala 5th edition</a></li>
-<li><a href="https://www.scalawithcats.com/">Scala with Cats</a></li>
-<li>Ресурси онлайн, <a
-href="https://docs.scala-lang.org/scala3/book/introduction.html">включително
-официалния сайт</a></li>
+href="https://docs.scala-lang.org/scala3/book/introduction.html">Официална
+документация</a></li>
 <li><a href="https://scala-lang.org/api/3.x/">API документация</a></li>
+<li><a href="https://rockthejvm.com/">Rock the JVM курсове<br /> <img
+data-src="images/01-intro/rock-the-jvm.png" height="240" /></a></li>
 </ul>
+</section>
+<section id="малко-код" class="slide level1">
+<h1>Малко код</h1>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scala"><code class="sourceCode highlightscala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>@main <span class="kw">def</span> hello <span class="op">=</span> <span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hello FP World!&quot;</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode scala"><code class="sourceCode highlightscala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Competitor</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> age<span class="op">:</span> <span class="dt">Int</span><span class="op">,</span> score<span class="op">:</span> <span class="dt">Int</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">findTop100AdultsScoreSum</span><span class="op">(</span>competitors<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>Competitor<span class="op">]):</span> <span class="dt">Int</span> <span class="op">=</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  competitors</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span><span class="op">(</span>_<span class="op">.</span>age <span class="op">&gt;=</span> <span class="dv">18</span><span class="op">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>score<span class="op">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sorted</span><span class="op">(</span>Ordering<span class="op">[</span><span class="dt">Int</span><span class="op">].</span>reverse<span class="op">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">take</span><span class="op">(</span><span class="dv">100</span><span class="op">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>sum</span></code></pre></div>
+</section>
+<section id="малко-код-1" class="slide level1">
+<h1>Малко код</h1>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode scala"><code class="sourceCode highlightscala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">square</span><span class="op">(</span>n<span class="op">:</span> <span class="dt">Int</span><span class="op">):</span> IO<span class="op">[</span><span class="dt">Int</span><span class="op">]</span> <span class="op">=</span> IO<span class="op">.</span><span class="fu">sleep</span><span class="op">(</span><span class="fl">1.</span>second<span class="op">)</span> <span class="op">&gt;&gt;</span> <span class="fu">IO</span><span class="op">(</span>n <span class="op">*</span> n<span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">double</span><span class="op">(</span>n<span class="op">:</span> <span class="dt">Int</span><span class="op">):</span> IO<span class="op">[</span><span class="dt">Int</span><span class="op">]</span> <span class="op">=</span> IO<span class="op">.</span><span class="fu">sleep</span><span class="op">(</span><span class="fl">1.</span>second<span class="op">)</span> <span class="op">&gt;&gt;</span> <span class="fu">IO</span><span class="op">(</span>n <span class="op">*</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> calc <span class="op">=</span> <span class="cf">for</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">(</span>a<span class="op">,</span> b<span class="op">,</span> c<span class="op">)</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">square</span><span class="op">(</span><span class="dv">2</span><span class="op">),</span> <span class="fu">square</span><span class="op">(</span><span class="dv">10</span><span class="op">),</span> <span class="fu">square</span><span class="op">(</span><span class="dv">20</span><span class="op">)).</span>parTupled</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  d <span class="op">&lt;-</span> <span class="fu">double</span><span class="op">(</span>a <span class="op">+</span> b <span class="op">+</span> c<span class="op">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> d</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ioExample <span class="op">=</span> calc<span class="op">.</span>timed <span class="op">&gt;&gt;=</span> IO<span class="op">.</span>println</span></code></pre></div>
 </section>
 <section id="въпроси" class="slide level1">
 <h1>Въпроси :)?</h1>
