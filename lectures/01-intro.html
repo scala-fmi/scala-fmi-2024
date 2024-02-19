@@ -3,19 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <title>За курса</title>
+  <title>Scala 2024 (tm)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="reveal-js/dist/reset.css">
   <link rel="stylesheet" href="reveal-js/dist/reveal.css">
   <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="reveal-js/dist/theme/white.css" id="theme">
@@ -26,27 +37,32 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">За курса</h1>
+  <h1 class="title">Scala 2024 (tm)</h1>
 </section>
 
-<section id="функционално-програмиране-за-напреднали-със-scala" class="slide level1">
+<section id="функционално-програмиране-за-напреднали-със-scala"
+class="slide level1">
 <h1>Функционално програмиране за напреднали със Scala</h1>
-<p>2021/2022</p>
+<p>2024</p>
 <p><img data-src="images/scala-logo.png" /></p>
 </section>
 <section id="днес" class="slide level1">
 <h1>Днес :)</h1>
-<p><img data-src="images/01-intro/pretending-to-write.gif" height="180" /></p>
+<p><img data-src="images/01-intro/pretending-to-write.gif"
+height="180" /></p>
 <div>
+<p>Неща които ще чуете днес…</p>
 <ul>
 <li class="fragment">Кои сме ние?</li>
 <li class="fragment">Административни неща за курса</li>
-<li class="fragment">Защо функционално? Кратка история на функционалното</li>
-<li class="fragment">Защо Scala?</li>
+<li class="fragment">Накратко защо въобще функционално?</li>
+<li class="fragment">Има ли причина да уча Скала 2024-а година,
+човек?</li>
 <li class="fragment">Kакво ще учим?</li>
 <li class="fragment">Ресурси</li>
 <li class="fragment">Инсталиране и инструменти</li>
-<li class="fragment">Начало на първа тема: Въведение във ФП със Scala</li>
+<li class="fragment">Начало на първа тема: Въведение във ФП със
+Scala</li>
 </ul>
 </div>
 </section>
@@ -54,31 +70,35 @@
 <h1>Ние?</h1>
 <ul style="display: grid; grid-template-columns: repeat(2, 1fr); list-style: none">
 <li>
-<a href="https://www.linkedin.com/in/boyan-bonev-ams/"><img data-src="images/01-intro/boyan.jpg" style="vertical-align: middle; border-radius: 50%" height="100" /> Боян Бонев</a>
+<a href="https://www.linkedin.com/in/zdravko-stoychev-46414758/"><img
+data-src="images/01-intro/zdravko.jpg"
+style="vertical-align: middle; border-radius: 50%" height="100" />
+Здравко Стойчев</a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/zdravko-stoychev-46414758/"><img data-src="images/01-intro/zdravko.jpg" style="vertical-align: middle; border-radius: 50%" height="100" /> Здравко Стойчев</a>
+<a href="https://www.linkedin.com/in/vdichev/"><img
+data-src="images/01-intro/vassil.jpg"
+style="vertical-align: middle; border-radius: 50%" height="100" /> Васил
+Дичев</a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/viktor-marinov-07374512b/"><img data-src="images/01-intro/viktor.jpg" style="vertical-align: middle; border-radius: 50%" height="100" /> Виктор Маринов</a>
-</li>
-<li>
-<a href="https://www.linkedin.com/in/vdichev/"><img data-src="images/01-intro/vassil.jpg" style="vertical-align: middle; border-radius: 50%" height="100" /> Васил Дичев</a>
-</li>
-<li>
-<a href="https://www.linkedin.com/in/dany-yanev/"><img data-src="images/01-intro/dany.jpg" style="vertical-align: middle; border-radius: 50%" height="100" /> Дани Янев</a>
+<a href="https://www.linkedin.com/in/boyan-bonev-ams/"><img
+data-src="images/01-intro/boyan.jpg"
+style="vertical-align: middle; border-radius: 50%" height="100" /> Боян
+Бонев</a>
 </li>
 </ul>
+<p>…може би и други!</p>
 </section>
 <section id="сбирки-и-админастративни-неща" class="slide level1">
 <h1>Сбирки и админастративни неща</h1>
 <div>
 <ul>
-<li class="fragment">Всяка сряда от 18:15 до 21:00</li>
-<li class="fragment">Онлайн (поне засега)</li>
-<li class="fragment">Платформа? Или Google Meet или Microsoft Teams (ще я фиксираме тези дни)</li>
-<li class="fragment">Slack – най-лесно може да ни намерите там. Ще постваме всичко ново там</li>
-<li class="fragment">Материали в GitHub: <a href="https://github.com/scala-fmi/scala-fmi-2022">https://github.com/scala-fmi/scala-fmi-2022</a></li>
+<li class="fragment">Всeки понеделник/сряда от 18:15 до 20:00</li>
+<li class="fragment">Slack – най-лесно може да ни намерите там &lt;-
+новини и комуникация.</li>
+<li class="fragment">Материали в GitHub: <a
+href="https://github.com/scala-fmi/scala-fmi-2024">https://github.com/scala-fmi/scala-fmi-2024</a></li>
 <li class="fragment">Домашни и финален проект – GitHub Classroom</li>
 </ul>
 </div>
@@ -140,7 +160,10 @@
 <section id="представете-ни-се-за-бонус-точки" class="slide level1">
 <h1>Представете ни се за бонус точки</h1>
 <div class="fragment">
-<p>Споделете няколко думи за себе си и своите интереси и качете снимка с инсталирана и работеща Scala в <a href="https://scalafmi.slack.com/archives/C01P1KBSF54"><strong>#да-се-представим</strong></a> в Slack за <strong>2 бонус точки</strong>.</p>
+<p>Споделете няколко думи за себе си и своите интереси и качете снимка с
+инсталирана и работеща Scala в <a
+href="https://scalafmi.slack.com/archives/C01P1KBSF54"><strong>#да-се-представим</strong></a>
+в Slack за <strong>2 бонус точки</strong>.</p>
 </div>
 </section>
 <section id="функционално-кратка-история" class="slide level1">
@@ -164,7 +187,8 @@
 <li>Параметричен полиморфизъм (Generics)</li>
 <li>Pattern matching</li>
 </ul></li>
-<li>1980-те – допълнително развитие, Standard ML, Miranda (lazy evaluation)</li>
+<li>1980-те – допълнително развитие, Standard ML, Miranda (lazy
+evaluation)</li>
 </ul>
 </section>
 <section id="функционално-кратка-история-1" class="slide level1">
@@ -179,13 +203,16 @@
 <li>абстракция чрез type classes</li>
 <li>контролиран монаден вход/изход</li>
 </ul></li>
-<li>2000-те – Scala от Мартин Одерски (2004-та), Clojure от Рич Хики (2007-ма)
+<li>2000-те – Scala от Мартин Одерски (2004-та), Clojure от Рич Хики
+(2007-ма)
 <ul>
 <li>Неизменими структури от данни</li>
 <li>Средства за конкурентни и дистрибутирани системи</li>
-<li>Комбинация на практики от различни езици (напр. ООП + ФП в Scala)</li>
+<li>Комбинация на практики от различни езици (напр. ООП + ФП в
+Scala)</li>
 </ul></li>
-<li>Края на 2000-те до наши дни – ФП елементи се появяват в почти всеки език. Защо?</li>
+<li>Края на 2000-те до наши дни – ФП елементи се появяват в почти всеки
+език. Защо?</li>
 </ul>
 </section>
 <section id="мартин-одерски" class="slide level1">
@@ -197,13 +224,15 @@
 <ul>
 <li>Професор в EPFL, Лозана</li>
 <li>Възхитен от ФП във време, в което Java изплува като платформа</li>
-<li>Решава да ги обедини в нов език – Pizza 🍕 – като добави елементи към Java
+<li>Решава да ги обедини в нов език – Pizza 🍕 – като добави елементи
+към Java
 <ul>
 <li>Параметричен полиформизъм (Generics)</li>
 <li>Функции от по-висок ред</li>
 <li>Pattern matching</li>
 </ul></li>
-<li>Имплементацията му на generics и изцяло новият компилатор, който написва, стават част от Java</li>
+<li>Имплементацията му на generics и изцяло новият компилатор, който
+написва, стават част от Java</li>
 </ul>
 </div>
 </section>
@@ -211,16 +240,20 @@
 <h1>Стъпка назад</h1>
 <ul>
 <li>Java има много ограничения</li>
-<li>Как би изглеждал език, комбиниращ ФП и ООП, ако го дизайнваме в момента?</li>
+<li>Как би изглеждал език, комбиниращ ФП и ООП, ако го дизайнваме в
+момента?</li>
 </ul>
 </section>
-<section id="scalable-language-scala-януари-2004-та" class="slide level1">
+<section id="scalable-language-scala-януари-2004-та"
+class="slide level1">
 <h1>SCAlable LAnguage (Scala) – Януари 2004-та</h1>
 <div>
 <ul>
 <li class="fragment">Без (твърде) много feature-и в самия език</li>
-<li class="fragment">Вместо това малко, но пълно множество от мощни езикови конструкции</li>
-<li class="fragment">Имплементиране на feature-и в библиотеки, използвайки тези конструкции</li>
+<li class="fragment">Вместо това малко, но пълно множество от мощни
+езикови конструкции</li>
+<li class="fragment">Имплементиране на feature-и в библиотеки,
+използвайки тези конструкции</li>
 </ul>
 </div>
 <div class="fragment">
@@ -228,15 +261,20 @@
 </div>
 </section>
 <section id="малка-граматика" class="slide level1">
-<h1><a href="https://docs.scala-lang.org/scala3/reference/syntax.html">Малка граматика</a></h1>
-<p><img data-src="./images/01-intro/grammar-size.png" height="480" /></p>
+<h1><a
+href="https://docs.scala-lang.org/scala3/reference/syntax.html">Малка
+граматика</a></h1>
+<p><img data-src="./images/01-intro/grammar-size.png"
+height="480" /></p>
 <div class="fragment">
-<p>Малко, но мощни езикови средства,<br />които се комбинират добре едно с друго</p>
+<p>Малко, но мощни езикови средства,<br />които се комбинират добре едно
+с друго</p>
 </div>
 </section>
 <section id="детайлна-типова-система" class="slide level1">
 <h1>Детайлна типова система</h1>
-<p><img data-src="./images/01-intro/static-type-system.jpeg" height="560" /></p>
+<p><img data-src="./images/01-intro/static-type-system.jpeg"
+height="560" /></p>
 </section>
 <section id="section" class="slide level1">
 <h1></h1>
@@ -246,9 +284,13 @@
 <h1>Scala 3</h1>
 <ul>
 <li>Чакахме го 8 години :)</li>
-<li>DOT – математически модел за <a href="https://www.scala-lang.org/blog/2016/02/03/essence-of-scala.html">есенцията на Scala</a> на ниво типова система</li>
+<li>DOT – математически модел за <a
+href="https://www.scala-lang.org/blog/2016/02/03/essence-of-scala.html">есенцията
+на Scala</a> на ниво типова система</li>
 <li>Dotty – изцяло нов компилатор с модерен дизайн, базиран на DOT</li>
-<li>Опростяване, изчистване и допълване на езика (<a href="https://docs.scala-lang.org/scala3/new-in-scala3.html">списък на какво ново</a>)</li>
+<li>Опростяване, изчистване и допълване на езика (<a
+href="https://docs.scala-lang.org/scala3/new-in-scala3.html">списък на
+какво ново</a>)</li>
 </ul>
 </section>
 <section id="scala-3-1" class="slide level1">
@@ -260,7 +302,8 @@
 <li class="fragment"><p>Ще отбелязваме кои са новите feature-и</p></li>
 <li class="fragment"><p>Ще ви срещнем и с мъничко Scala 2 синтаксис</p>
 <ul>
-<li class="fragment">много код все още използва него</li>
+<li class="fragment">много код все още използва него (Бележка Боян: Но
+не ви трябва да го четете….)</li>
 </ul></li>
 </ul>
 </div>
@@ -269,17 +312,11 @@
 <h1>Scala по света</h1>
 <div>
 <ul>
-<li class="fragment">Може да се срещне в production общо-взето навсякъде по света</li>
-<li class="fragment">Особено при дистрибутирани системи или ML/Data Science</li>
-<li class="fragment">По света: Twitter, Netflix, Disney+, LinkedIn, Databricks, The Guardian, Airbnb и много други</li>
-<li class="fragment">В България: В Ocado Technology, AtScale, Hopper, Estafet, Dopamine и други</li>
-<li class="fragment">Активна общност с разнообразни и стабилни проекти с отворен код
-<ul>
-<li class="fragment">Typelevel екосистема – Cats, Cats Effect, Http4s, fs2, doobie и много други</li>
-<li class="fragment">Kafka – distributed event streaming</li>
-<li class="fragment">Spark – big data &amp; ML</li>
-<li class="fragment">Lightbend екосистема – Akka, Play Framework, Lagom, Slick</li>
-</ul></li>
+<li class="fragment">Скала през годините….</li>
+<li class="fragment">Трансформация от специфични проблемни ниши към
+General Purpose Language</li>
+<li class="fragment">Obligatory pointless name drop: Netflix, Stripe,
+Airtable, Ocado!</li>
 </ul>
 </div>
 </section>
@@ -340,10 +377,18 @@
 <section id="ресурси" class="slide level1">
 <h1>Ресурси</h1>
 <ul>
-<li>Functional Progamming in Scala (<a href="https://www.manning.com/books/functional-programming-in-scala">1st edition</a>, <a href="https://www.manning.com/books/functional-programming-in-scala-second-edition">2nd edition</a>)</li>
-<li><a href="https://www.artima.com/shop/programming_in_scala_5ed">Programming in Scala 5th edition</a></li>
+<li>Functional Progamming in Scala (<a
+href="https://www.manning.com/books/functional-programming-in-scala">1st
+edition</a>, <a
+href="https://www.manning.com/books/functional-programming-in-scala-second-edition">2nd
+edition</a>)</li>
+<li><a
+href="https://www.artima.com/shop/programming_in_scala_5ed">Programming
+in Scala 5th edition</a></li>
 <li><a href="https://www.scalawithcats.com/">Scala with Cats</a></li>
-<li>Ресурси онлайн, <a href="https://docs.scala-lang.org/scala3/book/introduction.html">включително официалния сайт</a></li>
+<li>Ресурси онлайн, <a
+href="https://docs.scala-lang.org/scala3/book/introduction.html">включително
+официалния сайт</a></li>
 <li><a href="https://scala-lang.org/api/3.x/">API документация</a></li>
 </ul>
 </section>

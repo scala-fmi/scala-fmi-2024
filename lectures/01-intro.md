@@ -1,10 +1,10 @@
 ---
-title: За курса
+title: Scala 2024 (tm)
 ---
 
 # Функционално програмиране за напреднали със Scala
 
-2021/2022
+2024
 
 ![](images/scala-logo.png)
 
@@ -14,10 +14,12 @@ title: За курса
 
 ::: incremental
 
+Неща които ще чуете днес...
+
 * Кои сме ние?
 * Административни неща за курса
-* Защо функционално? Кратка история на функционалното
-* Защо Scala?
+* Накратко защо въобще функционално?
+* Има ли причина да уча Скала 2024-а година, човек?
 * Kакво ще учим?
 * Ресурси
 * Инсталиране и инструменти
@@ -29,22 +31,20 @@ title: За курса
 
 
 <ul style="display: grid; grid-template-columns: repeat(2, 1fr); list-style: none">
-<li>[![](images/01-intro/boyan.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Боян Бонев](https://www.linkedin.com/in/boyan-bonev-ams/)</li>
 <li>[![](images/01-intro/zdravko.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Здравко Стойчев](https://www.linkedin.com/in/zdravko-stoychev-46414758/)</li>
-<li>[![](images/01-intro/viktor.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Виктор Маринов](https://www.linkedin.com/in/viktor-marinov-07374512b/)</li>
 <li>[![](images/01-intro/vassil.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Васил Дичев](https://www.linkedin.com/in/vdichev/)</li>
-<li>[![](images/01-intro/dany.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Дани Янев](https://www.linkedin.com/in/dany-yanev/)</li>
+<li>[![](images/01-intro/boyan.jpg){ height=100 style="vertical-align: middle; border-radius: 50%" } Боян Бонев](https://www.linkedin.com/in/boyan-bonev-ams/)</li>
 </ul>
+
+...може би и други!
 
 # Сбирки и админастративни неща
 
 ::: incremental
 
-* Всяка сряда от 18:15 до 21:00
-* Онлайн (поне засега)
-* Платформа? Или Google Meet или Microsoft Teams (ще я фиксираме тези дни)
-* Slack – най-лесно може да ни намерите там. Ще постваме всичко ново там
-* Материали в GitHub: [https://github.com/scala-fmi/scala-fmi-2022](https://github.com/scala-fmi/scala-fmi-2022)
+* Всeки понеделник/сряда от 18:15 до 20:00
+* Slack – най-лесно може да ни намерите там <- новини и комуникация.
+* Материали в GitHub: [https://github.com/scala-fmi/scala-fmi-2024](https://github.com/scala-fmi/scala-fmi-2024)
 * Домашни и финален проект – GitHub Classroom
 
 :::
@@ -186,11 +186,11 @@ title: За курса
 ::: incremental
 
 * Курсът ни ще се базира на Scala 3
-  
+
   ![](images/01-intro/cheering-minions.gif)
 * Ще отбелязваме кои са новите feature-и
 * Ще ви срещнем и с мъничко Scala 2 синтаксис
-  - много код все още използва него
+  - много код все още използва него (Бележка Боян: Но не ви трябва да го четете....)
 
 :::
 
@@ -198,15 +198,9 @@ title: За курса
 
 ::: incremental
 
-* Може да се срещне в production общо-взето навсякъде по света
-* Особено при дистрибутирани системи или ML/Data Science
-* По света: Twitter, Netflix, Disney+, LinkedIn, Databricks, The Guardian, Airbnb и много други
-* В България: В Ocado Technology, AtScale, Hopper, Estafet, Dopamine и други
-* Активна общност с разнообразни и стабилни проекти с отворен код
-  - Typelevel екосистема – Cats, Cats Effect, Http4s, fs2, doobie и много други
-  - Kafka – distributed event streaming
-  - Spark – big data & ML
-  - Lightbend екосистема – Akka, Play Framework, Lagom, Slick
+* Скала през годините....
+* Трансформация от специфични проблемни ниши към General Purpose Language
+* Obligatory pointless name drop: Netflix, Stripe, Airtable, Ocado!
 
 :::
 
@@ -269,4 +263,3 @@ title: За курса
 ![](images/01-intro/case-ended.webp)
 
 :::
-
