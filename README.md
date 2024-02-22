@@ -9,6 +9,7 @@
   - Защо Scala?
   - Какво ще учим?
   - Ресурси
+* [02 – Въведение във функционалното програмиране със Scala](https://scala-fmi.github.io/scala-fmi-2024/lectures/02-fp-with-scala.html)
 
 ## Генериране на лекции
 
