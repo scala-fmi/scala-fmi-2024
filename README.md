@@ -2,13 +2,14 @@
 
 ## Лекции
 
-* [01 – За курса](https://scala-fmi.github.io/scala-fmi-2024/lectures/01-intro.html)
+* [01 – За курса](https://scala-fmi.github.io/scala-fmi-2024/lectures/01-intro.html) \[[примери](lectures/examples/01-intro)\]
   - Кои сме ние?
   - Административни неща
   - Защо функционално? Кратка история на функционалното
   - Защо Scala?
   - Какво ще учим?
   - Ресурси
+  - Примерен код
 * [02 – Въведение във функционалното програмиране със Scala](https://scala-fmi.github.io/scala-fmi-2024/lectures/02-fp-with-scala.html) \[[код](lectures/examples/02-fp-with-scala)\]
   - Инсталиране на Scala
   - Scala инструменти

@@ -1,5 +1,5 @@
 ---
-title: Scala 2024 (tm)
+title: За курса
 ---
 
 # Функционално програмиране за напреднали със Scala
@@ -372,6 +372,31 @@ val calc = for
 yield d
 
 def ioExample = calc.timed >>= IO.println
+```
+
+# Малко код
+
+```scala
+object StreamsWithHttp extends IOApp.Simple:
+  val countToTen =
+    Stream
+      .awakeEvery[IO](1.second)
+      .map(_.toString + "\n")
+      .take(10)
+
+  val counterRoutes = HttpRoutes.of[IO]:
+    case GET -> Root / "counter" =>
+      Ok(countToTen)
+
+  val httpApp = counterRoutes.orNotFound
+
+  val serverBuilder = EmberServerBuilder.default[IO]
+    .withHost(ipv4"0.0.0.0")
+    .withPort(port"8080")
+    .withHttpApp(httpApp)
+    .build
+
+  def run: IO[Unit] = serverBuilder.use(_ => IO.never)
 ```
 
 # Въпроси :)?
