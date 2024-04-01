@@ -106,6 +106,7 @@
 
 * [Таблица на елементите, съставящи типовата система на Scala](resources/type-elements-in-scala.md)
 * [Възможни образци при pattern matching. Използване на pattern matching](resources/pattern-matching.md)
+* [Вариантност](resources/variance.md)
 
 ## Генериране на лекции
 
