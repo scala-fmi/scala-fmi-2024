@@ -101,6 +101,45 @@
       - UI и front-end (примери с Redux и virtual DOM)
   - Композиция на функции
   - Изразяване чрез типове
+* [05 – Fold и колекции](https://github.com/scala-fmi/scala-fmi-2022/blob/master/lectures/05-folds-collections.ipynb)
+  - Абстракция чрез `fold`, `foldLeft` и `foldRight`. Изразяване на операции чрез тях
+  - Йеархия и дизайн на колекциите в Scala.
+    * Uniform Return Type principle
+    * Колекциите като функции (примери за `Seq`, `Set`, `Map`)
+  - Честични функции. Частични функции чрез `case` блокове
+  - Още операции върху колекции – `partition`, `span`, `splitAt`; `flatten`, `flatMap`, `zip`, `groupBy` и други
+  - Тайната за `for` конструкциите – синтактична захар върху `map`, `flatMap` и `withFilter` (`filter`)
+  - Lazy колекции
+    * нестриктни view-та на колекции
+    * lazy списъци с мемоизация
+  - Имплементация на `LazyList`
+* [06 – Pattern matching и алгебрични типове от данни (ADTs)](https://github.com/scala-fmi/scala-fmi-2021/blob/master/lectures/06-adts-are-the-root-of-all-evil.ipynb) [\[pattern-и\]](resources/pattern-matching.md)
+  - [Pattern matching](resources/pattern-matching.md). Деструктуриране на обекти
+  - Pattern matching на различни места
+    * `case` блокове – при `match` или на мястата, където се очакват функции или частични функции. Примери с `map` и `collect`
+    * pattern bindings – съпоставяне с единичен pattern при `for` (отляво на генератори и дефиници) и при `val` дефиниции
+  - Алгебрични типове от данни. Примери
+    * product типове. `case` класове, наредени n-торки и други
+    * sum типове. Имплементация чрез `sealed trait` и `enum`
+  - Type bounds (ограничения върху типовите параметри).
+  - [Вариантност](resources/variance.md). Ковариантност и контравариантност на типове. Вариантност при типовете за функции. [Още примери](https://www.freecodecamp.org/news/understand-scala-variances-building-restaurants/)
+  - Изразяване на опционалност. `null` като грешка за милиард долара. Имплементация на `Option` тип
+  - `Option` във `for`
+  - Полезни операции върху `Option`. [Използване на операции вместо pattern matching](https://github.com/scala-fmi/scala-fmi-2022/blob/master/lectures/07-effects-and-functional-error-handling.ipynb)
+  - Деструктуриране чрез екстрактори. Използването им в pattern matching ([тук](https://github.com/scala-fmi/scala-fmi-2022/blob/master/lectures/07-effects-and-functional-error-handling.ipynb))
+* [07 – Ефекти и функционална обработка на грешки](https://github.com/scala-fmi/scala-fmi-2022/blob/master/lectures/07-effects-and-functional-error-handling.ipynb) \[[код](lectures/examples/07-effects-and-functional-error-handling)\]
+  - Функционален дизайн – [премахване на нелегалните състояния](https://www.youtube.com/watch?v=PSh7JUfDstE)
+  - От частични към тотални функции
+  - Комплексност на типове
+  - Ефекти
+  - Видове ефекти – частичност, изключения/грешки, недетерминизъм, зависимости/конфигурация, логване, изменяемо състояние, вход/изход, асинхронност, и други. Типове зад тях
+  - Проблемите при изключенията
+  - Моделиране на грешни състояние чрез `Option`, `Try` и `Either`
+    * замяна на изключенията с безопасни и композитни ефекти
+    * моделиране на грешките като домейн структури и домейн логика
+  - Ефект за вход/изход. IO. Предимства на IO
+  - Разделение на чисто функционално композитно изграждане на план (без странични ефекти) от изпълнение на плана (водещо до странични ефекти)
+  - Имплементация на цялостни конзолни приложения с IO. Todo list и игра на морски шах
 
 ## Допълнителни ресурси
 
