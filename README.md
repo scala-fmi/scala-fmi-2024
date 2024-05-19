@@ -211,6 +211,7 @@
 * [Таблица на елементите, съставящи типовата система на Scala](resources/type-elements-in-scala.md)
 * [Възможни образци при pattern matching. Използване на pattern matching](resources/pattern-matching.md)
 * [Вариантност](resources/variance.md)
+* [Cheat sheet със типовете и инстанциите на Cats](resources/cats-cheat-sheet.md)
 
 ## Генериране на лекции
 
