@@ -29,7 +29,7 @@ extension [F[_], G[_], A](value: F[G[A]])
 
 Монадите не се композират в общия случай, но са композитни, ако съществува `Traverse` за вътрешния тип. Поради тази причина в Cats имаме няколко типа за комопозиране на `Traverse` монади с други – `OptionT` и `EitherT`.
 
-[Примери с композиция](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Composition.scala)
+[Примери с композиция](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex8Composition.scala)
 
 ### `Option[A]`
 
@@ -65,7 +65,7 @@ extension [A](a: Option[A])
   def toOptionT[F[_]: Applicative]: OptionT[F, A] // Композира option-а с друг ефект
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/DataTypesSyntax.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex1DataTypesSyntax.scala)
 
 ### `Either[E, A]`
 
@@ -94,7 +94,7 @@ extension [E, A](either: Either[E, A])
   // ...и други
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/DataTypesSyntax.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex1DataTypesSyntax.scala)
 
 ### `Validated[E, A]`
 
@@ -115,7 +115,7 @@ extension [A](a: A):
   def invalidNec[B]: ValidatedNec[A, B]
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/DataTypesSyntax.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex1DataTypesSyntax.scala)
 
 ### `FunctionK` или `~>`
 
@@ -137,22 +137,21 @@ type ~>[F[_], G[_]] = FunctionK[F, G]
 `===` трябва да образува релация на еквивалентност
 
 ```scala
-trait Eq[A] {
+trait Eq[A]:
   def eqv(x: A, y: A): Boolean
 
   def neqv(x: A, y: A): Boolean = !eqv(x, y)
-}
 ```
 
 Синтаксис при `import cats.syntax.eq.*`:
 
 ```scala
-extension [A: Eq](x: A)
+extension [A : Eq](x: A)
   def ===(rhs: A): Boolean
   def =!=(rhs: A): Boolean
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/EqDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex2EqDemo.scala)
 
 ### Semigroup и Monoid
 
@@ -169,15 +168,15 @@ trait Monoid[A] extends Semigroup[A]:
 Синтаксис при `import cats.syntax.monoid.*`:
 
 ```scala
-extension [A: Semigroup](x: A)
+extension [A : Semigroup](x: A)
   def |+|(y: A): A // събиране на x и y
   def combineN(n: Int): A // събиране на x със себе си n пъти
 
-extension [A: Monoid](x: A)
+extension [A : Monoid](x: A)
   def isEmpty(implicit eq: Eq[A]): Boolean // проверява дали стойността е идентитета. Изисква Eq за сравнение
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/MonoidDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex3MonoidDemo.scala)
 
 ### `Foldable[F[_]]`
 
@@ -194,7 +193,7 @@ trait Foldable[F[_]]:
 Синтаксис при `import cats.syntax.foldable.*`:
 
 ```scala
-extension [F[_]: Foldable, A](fa: F[A])
+extension [F[_] : Foldable, A](fa: F[A])
   def foldLeft[B](b: B)(f: (B, A) => B): B
   def foldRight[B](lb: Eval[B])(f: (A, Eval[B]) => Eval[B]): Eval[B]
   
@@ -214,14 +213,13 @@ extension [F[_]: Foldable, A](fa: F[A])
   def forall(p: A => Boolean): Boolean
   def size: Long
   
-  def existsM[G[_]: Monad](p: A => G[Boolean]): G[Boolean] // като exists, но с резултат, изпълнен в монада
-  def forallM[G[_]: Monad](p: A => G[Boolean]): G[Boolean] // като forall, но с резултат, изпълнен в монада
+  def existsM[G[_] : Monad](p: A => G[Boolean]): G[Boolean] // като exists, но с резултат, изпълнен в монада
+  def forallM[G[_] : Monad](p: A => G[Boolean]): G[Boolean] // като forall, но с резултат, изпълнен в монада
     
   // и други операции, характерни за foldable типове
-}
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FoldableDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex4FoldableDemo.scala)
 
 ### `Functor[F[_]]`
 
@@ -238,19 +236,19 @@ trait Functor[F[_]]:
 Синтаксис при `import cats.syntax.functor.*`:
 
 ```scala
-extension [F[_]: Functor, A](fa: F[A])
+extension [F[_] : Functor, A](fa: F[A])
   def map[B](f: A => B): F[B] // операцията map за функтора
   
   def as[B](b: B): F[B] // игнорира резултатът във функтора, заменяйки го със стойността b
   def void: F[Unit] // игнорира резултатът във функтора и го заменя със () (т.е със unit)
   def widen[B >: A]: F[B] // разглежда стойността на функтора като неѝн надтип. Полезно за имитиране на ковариантност
 
-extension [F[_]: Functor, A, B](fab: F[(A, B)])
+extension [F[_] : Functor, A, B](fab: F[(A, B)])
   def swapF: F[(B, A)] // разменя A и B
   def unzip: (F[A], F[B]) // изважда tuple-а отвън
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FunctorDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex5FunctorDemo.scala)
 
 ### `Apply[F[_]]`
 
@@ -272,7 +270,7 @@ trait Apply[F[_]] extends Functor[F]:
 Синтаксис при `import cats.syntax.apply.*`
 
 ```scala
-extension [F[_]: Apply, A](fa: F[A]) 
+extension [F[_] : Apply, A](fa: F[A]) 
     def <*>[B, C](fb: F[B])(implicit ev: A <:< (B => C)): F[C] // символна репрезентация на ap
     def *>[B](fb: F[B]): F[B] // комбинира fa и fb, но взима резултата само от fb
     def <*[B](fb: F[B]): F[A] // комбинира fa и fb, но взима резултата само от fa
@@ -280,18 +278,18 @@ extension [F[_]: Apply, A](fa: F[A])
     def product[B](fb: F[B]): F[(A, B)] // комбинира fa и fb в tuple (изисква import cats.syntax.semigroupal._)
     def map2[B, C](fb: F[B])(f: (A, B) => C): F[C] // map-ва fa и fb с функцията f
 
-extension [F[_]: Apply, A, B](t2: (F[A], F[B]))
+extension [F[_] : Apply, A, B](t2: (F[A], F[B]))
   def mapN[Z](f: (A, B) => Z): F[Z] // прилагане на функция към две ефекти стйоности
   def tupled: F[(A, B)] // product върху двата елемента
 
-extension [F[_]: Apply, A, B, C](t3: (F[A], F[B], F[C]))
+extension [F[_] : Apply, A, B, C](t3: (F[A], F[B], F[C]))
   def mapN[Z](f: (A, B, C) => Z): F[Z] // прилагане на функция към три ефекти стйоности
   def tupled: F[(A0, A1, A2)] // product върху трите елемента
 
 // ... имплементации за tuple от 1 до 22
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/ApplyApplicativeTraverseDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex6ApplyApplicativeTraverseDemo.scala)
 
 ### `Applicative[F[_]]`
 
@@ -312,13 +310,13 @@ trait Applicative[F[_]] extends Apply[F]:
 
 ```scala
 extension [A](a: A)
-  def pure[F[_]: Applicative]: F[A] // вкарва произволна стойност a във ефекта F
+  def pure[F[_] : Applicative]: F[A] // вкарва произволна стойност a във ефекта F
 
-extension [F[_]: Applicative, A](fa: F[A]):
+extension [F[_] : Applicative, A](fa: F[A]):
   def replicateA(n: Int): F[List[A]] // повтаря fa n пъти
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/ApplyApplicativeTraverseDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex6ApplyApplicativeTraverseDemo.scala)
 
 ### `Traverse[F[_]]`
 
@@ -328,7 +326,7 @@ extension [F[_]: Applicative, A](fa: F[A]):
 trait Traverse[F[_]] extends Functor[F] with Foldable[F]:
   def traverse[G[_] : Applicative, A, B](fa: F[A])(f: A => G[B]): G[F[B]]
 
-  def sequence[G[_]: Applicative, A](fga: F[G[A]]): G[F[A]] = traverse(fga)(ga => ga)
+  def sequence[G[_] : Applicative, A](fga: F[G[A]]): G[F[A]] = traverse(fga)(ga => ga)
 
   def map[A, B](fa: F[A])(f: A => B): F[B] = traverse[Id, A, B](fa)(f)
 ```
@@ -338,7 +336,7 @@ trait Traverse[F[_]] extends Functor[F] with Foldable[F]:
 Синтаксис при `import cats.syntax.traverse.*`:
 
 ```scala
-extension [F[_]: Traverse, A](fa: F[A])
+extension [F[_] : Traverse, A](fa: F[A])
   def traverse[G[_]: Applicative, B](f: A => G[B]): G[F[B]] // извиква traverse
   def sequence[G[_]: Applicable, B](implicit ev: A <:< G[B]): G[F[B]] // извиква sequence
   
@@ -349,7 +347,7 @@ extension [F[_]: Traverse, A](fa: F[A])
   def zipWithIndex: F[(A, Int)] // преобразуване на стойностите към tuple с индекса
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/ApplyApplicativeTraverseDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex6ApplyApplicativeTraverseDemo.scala)
 
 ### `FlatMap[F[_]]`
 
@@ -368,7 +366,7 @@ trait FlatMap[F[_]] extends Apply[F]:
 Синтаксис при `import cats.syntax.flatMap.*`:
 
 ```scala
-extension [F[_]: FlatMap, A](fa: F[A])
+extension [F[_] : FlatMap, A](fa: F[A])
   def flatMap[B](f: A => F[B]): F[B] // изпълнява flatMap операцията
   def flatten[B](implicit ev: A <:< F[B]): F[B] // flatten-ва F[F[A]] до F[A]
 
@@ -377,14 +375,14 @@ extension [F[_]: FlatMap, A](fa: F[A])
 
   def foreverM: F[Nothing] // изпълнява fa безкрайно
 
-extension [F[_]: FlatMap](fBoolean: F[Boolean])
+extension [F[_] : FlatMap](fBoolean: F[Boolean])
   def ifM[B](ifTrue: => F[B], ifFalse: => F[B]): F[B] // Ако fa се оцени до истина, то изчислението продължава с ifTrue, иначе с ifFalse
 
-extension [F[_]: FlatMap, A](fOptA: F[Option[A]])
+extension [F[_] : FlatMap, A](fOptA: F[Option[A]])
   def untilDefinedM: F[A] // повтаря fOptA докато не получи стойност. Полезно е при polling операции
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FlatMapMonadMonadErrorDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex7FlatMapMonadMonadErrorDemo.scala)
 
 ### `Monad[F[_]]`
 
@@ -405,7 +403,7 @@ extensino [F[_]: Monad, A](fa: F[A])
   def iterateUntil(p: A => Boolean): F[A] // повтаря fa докато p не даде истина за стойността във fa
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FlatMapMonadMonadErrorDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex7FlatMapMonadMonadErrorDemo.scala)
 
 ### `ApplicativeError[F[_], E]`
 
@@ -450,7 +448,7 @@ extension [F[_], E, A](fa: F[A])
   def orRaise(other: => E)(implicit F: ApplicativeError[F, E]): F[A] // при грешка заменя грешката с other
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FlatMapMonadMonadErrorDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex7FlatMapMonadMonadErrorDemo.scala)
 
 ### `MonadError[F[_], E]`
 
@@ -481,7 +479,7 @@ extension [F[_], E, A](fa: F[A])
   def ensureOr(error: A => E)(predicate: A => Boolean)(implicit F: MonadError[F, E]): F[A] // Проверява дали стойността във fa изпълнява определено условив. Ако не, то я трансформира към грешка в ефекта F
 ```
 
-[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/FlatMapMonadMonadErrorDemo.scala)
+[Примери](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex7FlatMapMonadMonadErrorDemo.scala)
 
 ### `Parallel`
 
@@ -507,21 +505,21 @@ trait Parallel[M[_]]:
 Синтаксис при `import cats.syntax.parallel.*`
 
 ```scala
-extension [T[_]: Traverse, A](ta: T[A])
+extension [T[_] : Traverse, A](ta: T[A])
   def parTraverse[F[_]: Parallel, B](f: A => F[B]): F[T[B]] // изпълнява traverse според апликатива
   def parSequence[F[_]: Parallel]: M[T[A]] // изпълнява sequence според апликатива
 
-extension [F[_]: Parallel, A, B](t2: (F[A], F[B]))
+extension [F[_] : Parallel, A, B](t2: (F[A], F[B]))
   def parMapN[Z](f: (A, B) => Z): F[Z] // прилагане на функция към две ефекти стйоности, използвайки апликатив
   def parTupled: F[(A, B)] // product върху двата елемента, използвайки апликатив
 
-extension[F[_]: Parallel, A, B, C](t3: (F[A], F[B], F[C]))
+extension[F[_] : Parallel, A, B, C](t3: (F[A], F[B], F[C]))
   def parMapN[Z](f: (A, B, C) => Z): F[Z] // прилагане на функция към три ефекти стйоности, използвайки апликатив
   def parTupled: F[(A0, A1, A2)] // product върху трите елемента, използвайки апликатив
 
 // ... имплементации за tuple от 1 до 22
 ```
 
-[Примери 1](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/ConcurrentParallelDemo.scala)
+[Примери 1](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex8Composition.scala)
 
-[Примери 2](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/ParallelDemo.scala)
+[Примери 2](../lectures/examples/11-cats-and-cats-effects/src/main/scala/cats/Ex9ParallelDemo.scala)
